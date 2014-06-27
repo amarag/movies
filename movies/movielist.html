@@ -1,0 +1,18 @@
+<div ng-show="movies">
+    <table >
+        <thead>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Genres</th>
+        </thead>
+        <tbody ng-repeat="movie in movies">
+            <tr ng-class-even="'even'" ng-class-odd="'odd'" >
+            <td>{{movie.title}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.type}}</td>
+            <td>{{movie.genres}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

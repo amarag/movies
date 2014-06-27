@@ -1,0 +1,64 @@
+article, section, aside, hgroup, nav, header, footer, figure, figcaption { 
+    display: block;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+img {
+    border: none;
+}
+#wrapper {
+    //width: 990px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+header {
+    height: 100px;
+    width: 100%;
+    background-color: #999900;
+}
+#leftsidebar {
+    width: 140px;
+    position:absolute;
+    left: 0%;
+    background-color: green;
+}
+#movielist {
+    width: 65%;
+    position:absolute;
+    left: 141px;
+//    float: left;
+    background-color: azure;
+}
+#rightsidebar {
+    position:absolute;
+    width: 140px;
+    left: 85%;
+    //float: left;
+    background-color: yellow;
+}
+footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#6cf;
+}
+#mediumPart{
+    position: relative;
+    padding-top: 20px;
+}
+
+.even{
+    background-color: #ccc;
+}
+.odd{
+    background-color: #FFF;
+}
