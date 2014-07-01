@@ -1,0 +1,13 @@
+<div id="wrapper" ng-controller="HomeController" class="row">
+    <div  class="col-md-2">
+    <aside id="leftsidebar">
+        <div id="genrePart" ng-include="'global/genresSelector.html'"></div>
+        <div id="mediumPart" ng-include="'global/mediumSelector.html'"></div>
+    </aside>
+    </div>
+    <div class="col-md-8">
+        <article  id='movielist' ng-include="'movies/movielist.html'">
+        </article>
+    </div>
+    <div id="rightsidebar" class="col-md-2">right</div>
+</div>

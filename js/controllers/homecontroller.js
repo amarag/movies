@@ -5,24 +5,24 @@
  */
 (function(){
 
-var app = angular.module('movies_app', []);
+var app = angular.module('movies_app');
 
-var MovieListController = function ($scope, $http) {
+var HomeController = function ($scope, $http,AuthService, MediumService) {
     console.log('Start MovieListController');
 
     var onMovieListComplete = function(response){
-        console.log('In onMovieListComplete' + response);
+//        console.log('In onMovieListComplete' + response);
         $scope.movies = response.data;
     }
     var onGenresListComplete = function(response){
-        console.log('In onGenresListComplete' + response.data);
+//        console.log('In onGenresListComplete' + response.data);
         $scope.genres = response.data;
-        console.log($scope.genres);
+//        console.log($scope.genres);
     }
     var onMediumsListComplete = function(response){
-        console.log('In onMediumsListComplete' + response.data);
-        $scope.mediums = response.data;
-        console.log($scope.mediums);
+        console.log('In onMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
+        $scope.mediums = response;
+     //   console.log($scope.mediums);
     }
     var onError = function(reason){
         console.log('In onError' + reason);
@@ -33,13 +33,17 @@ var MovieListController = function ($scope, $http) {
                 .then(onMovieListComplete, onError);
     $http.get('http://localhost/movieserver/genresList.php')
                 .then(onGenresListComplete, onError);
-    $http.get('http://localhost/movieserver/mediumsList.php')
-                .then(onMediumsListComplete, onError);
-        
-    console.log('end MovieListController');
+//    $http.post('http://localhost/movieserver/mediumsList.php')
+//                .then(onMediumsListComplete, onError);
+//    MediumService.getList.then(function(){
+//            $scope.mediums = 'Jos';
+//    });
+    MediumService.getMediums().then(onMediumsListComplete,onerror);
+    
+    console.log('end HomeController');
 
 }
-app.controller('MovieListController',MovieListController);
+app.controller('HomeController',HomeController);
 
 
 }());
