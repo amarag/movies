@@ -1,7 +1,6 @@
 (function(){
 
     var app = angular.module('movies_app', ['ngRoute','ui.bootstrap']);
-    //angular.module('movies_app', ['ui.bootstrap']);
     
     app.config(function ($routeProvider){
         $routeProvider
@@ -47,9 +46,10 @@
       });
       
       app.service('Session', function () {
-        this.create = function (sessionId, userName, userEmail, userRole, userLastlogin, userActive, userAttempts,userHashKey) {
+        this.create = function (sessionId, userName,password, userEmail, userRole, userLastlogin, userActive, userAttempts,userHashKey) {
           this.id = sessionId;
           this.userName = userName;
+          this.password = password;
           this.email = userEmail;
           this.userRole = userRole;
           this.lastLogin = userLastlogin;
@@ -60,6 +60,7 @@
         this.destroy = function () {
           this.id = null;
           this.userName = null;
+          this.password = null;
           this.userRole = null;
           this.email = null;
           this.lastLogin = null;

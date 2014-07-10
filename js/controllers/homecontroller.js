@@ -1,18 +1,14 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 (function(){
 
 var app = angular.module('movies_app');
 
-var HomeController = function ($scope, $http,AuthService, MediumService) {
-    console.log('Start MovieListController');
+var HomeController = function ($scope, $http,AuthService, MediumService, MovieService,AUTH_EVENTS) {
+    //console.log('Start MovieListController');
+    $scope.btnLogInOut = 'Sign in';
 
     var onMovieListComplete = function(response){
 //        console.log('In onMovieListComplete' + response);
-        $scope.movies = response.data;
+        $scope.movies = response;
     }
     var onGenresListComplete = function(response){
 //        console.log('In onGenresListComplete' + response.data);
@@ -20,7 +16,7 @@ var HomeController = function ($scope, $http,AuthService, MediumService) {
 //        console.log($scope.genres);
     }
     var onMediumsListComplete = function(response){
-        console.log('In onMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
+        //console.log('In onMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
         $scope.mediums = response;
      //   console.log($scope.mediums);
     }
@@ -29,21 +25,24 @@ var HomeController = function ($scope, $http,AuthService, MediumService) {
         $scope.error = 'Could not load list!';
     }
 
-    $http.get('http://localhost/movieserver/movieList.php')
-                .then(onMovieListComplete, onError);
     $http.get('http://localhost/movieserver/genresList.php')
                 .then(onGenresListComplete, onError);
-//    $http.post('http://localhost/movieserver/mediumsList.php')
-//                .then(onMediumsListComplete, onError);
-//    MediumService.getList.then(function(){
-//            $scope.mediums = 'Jos';
-//    });
+
+    // gives initial page lay-out filled    
+    MovieService.getMovies().then(onMovieListComplete,onerror);
     MediumService.getMediums().then(onMediumsListComplete,onerror);
     
-    console.log('end HomeController');
+    // after login successfully handle event: show new lists
+    $scope.$on(AUTH_EVENTS.loginSuccess, function(){
+        MovieService.getMovies().then(onMovieListComplete,onerror);
+        MediumService.getMediums().then(onMediumsListComplete,onerror);
+    });
+    $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
+        MovieService.getMovies().then(onMovieListComplete,onerror);
+        MediumService.getMediums().then(onMediumsListComplete,onerror);
+    });
 
 }
 app.controller('HomeController',HomeController);
-
 
 }());

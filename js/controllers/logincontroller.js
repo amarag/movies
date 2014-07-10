@@ -8,28 +8,17 @@
 var app = angular.module('movies_app');
 
 var LoginController = function ($scope, $rootScope, AUTH_EVENTS, AuthService,MediumService){
-    //console.log('Start LoginController');
     $scope.login = function(credentials){
-        //console.log('In login Controller ' + credentials.username + ' || ' + credentials.password);
-        AuthService.login(credentials).then(function () {
-              MediumService.getMediums().then(onMediumsListComplete,onerror);
+        AuthService.login(credentials).then(function () { // success
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-          }, function () {
+            $scope.$broadcast(AUTH_EVENTS.loginSuccess);
+        }, function () { // failure
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-          });
-          
-    var onMediumsListComplete = function(response){
-        console.log('In LoginControlleronMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
-        $scope.mediums = response.data;
-        //console.log($scope.mediums);
+        });
     }
-    var onError = function(reason){
-        console.log('In onError' + reason);
-        $scope.error = 'Could not load list!';
-    }
-          
-
-          
+    $scope.logout = function(){
+//        console.log('&&&&&&&&&&& Signed out &&&&&');
+        $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
     }
 
     $scope.credentials = {
