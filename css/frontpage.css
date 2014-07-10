@@ -47,4 +47,13 @@ footer {
 .scrollable {
                 height: 100%;
                 overflow: auto;
-            }
+}
+
+#header {
+    text-align: center
+}
+
+.p-footer {
+    text-align: center;
+    color: #888888;
+}
