@@ -1,11 +1,11 @@
 (function(){
 
-    var app = angular.module('movies_app', ['ngRoute','ui.bootstrap']);
+    var app = angular.module('movies_app', ['ngRoute','ui.bootstrap', 'ngGrid']);
     
     app.config(function ($routeProvider){
         $routeProvider
                 .when('/',{
-                    templateUrl: 'movies.html',
+                    templateUrl: 'movies/movies.html',
                     controller: 'HomeController'
                 })
                 .when('/about',{
@@ -70,4 +70,5 @@
         };
         return this;
       })
+      
 }());

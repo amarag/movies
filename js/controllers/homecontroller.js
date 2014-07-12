@@ -2,17 +2,26 @@
 
 var app = angular.module('movies_app');
 
-var HomeController = function ($scope, $http,AuthService, MediumService, MovieService,AUTH_EVENTS) {
+var HomeController = function ($scope, $http,AuthService, MediumService, MovieService, GenreService,AUTH_EVENTS) {
     //console.log('Start MovieListController');
     $scope.btnLogInOut = 'Sign in';
+    $scope.sortorder = 'name';
+    //$scope.queryMediaType.type = 'All';
+    $scope.genresCheck = 'All';
 
     var onMovieListComplete = function(response){
 //        console.log('In onMovieListComplete' + response);
-        $scope.movies = response;
+      $scope.movies = response;
+//      $scope.movies = [
+//          {name: 'Jos', age:'23'}
+//      ];
+        $scope.gridOptions = {
+          data: 'movies',
+        };
     }
     var onGenresListComplete = function(response){
 //        console.log('In onGenresListComplete' + response.data);
-        $scope.genres = response.data;
+        $scope.genres = response;
 //        console.log($scope.genres);
     }
     var onMediumsListComplete = function(response){
@@ -25,11 +34,11 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
         $scope.error = 'Could not load list!';
     }
 
-    $http.get('http://localhost/movieserver/genresList.php')
-                .then(onGenresListComplete, onError);
+//    $http.get('http://localhost/movieserver/genresList.php')
+//                .then(onGenresListComplete, onError);
 
     // gives initial page lay-out filled    
-    MovieService.getMovies().then(onMovieListComplete,onerror);
+    GenreService.getGenres().then(onGenresListComplete,onerror);
     MediumService.getMediums().then(onMediumsListComplete,onerror);
     
     // after login successfully handle event: show new lists
@@ -41,6 +50,12 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
         MovieService.getMovies().then(onMovieListComplete,onerror);
         MediumService.getMediums().then(onMediumsListComplete,onerror);
     });
+
+    $scope.genresClick = function($event, genre) {
+        var checkbox = $event.target;
+        $scope.genresCheck = genre;
+        console.log('homecontroller->genresClick:' + checkbox.checked + ' || ' +genre);
+    }
 
 }
 app.controller('HomeController',HomeController);

@@ -7,7 +7,7 @@
 
 var app = angular.module('movies_app');
 
-var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENTS,Session) {
+var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENTS,Session,MovieService) {
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.isAuthorized = AuthService.isAuthorized;
@@ -27,6 +27,35 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
       $scope.btnLogInOut = 'Sign in';
       $scope.loggedIn = false;
   });
+      var onMovieListComplete = function(response){
+      $scope.movies = response;
+      $scope.gridOptions = {
+          data: 'movies',
+          plugins: [new ngGridFlexibleHeightPlugin()]
+      };
+    }
+    var onError = function(reason){
+        console.log('In onError' + reason);
+        $scope.error = 'Could not load list!';
+    }
+
+  MovieService.getMovies().then(onMovieListComplete,onerror);
+
+  // grid settings
+  $scope.gridConfig = {
+      isPaginationEnabled: false,
+      isGlobalSearchActivated: true
+  };
+  $scope.gridOptions = {plugins: [new ngGridFlexibleHeightPlugin()]};
+  $scope.gridHeader = [
+      {label:'movieid', map: 'nummer' }  ,
+      {label:'title', map: 'Title' }  ,
+      {label:'year', map: 'Year' }  ,
+      {label:'type', map: 'media' }  ,
+      {label:'genres', map: 'Genres' }  ,
+  ];
+
+  
 }   
 
 

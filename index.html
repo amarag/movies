@@ -7,6 +7,7 @@
         <link href="js/libs/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/frontpage.css" rel="stylesheet" type="text/css"/>
+        <link href="css/ng-grid.css" rel="stylesheet" type="text/css"/>
     </head>
     <body ng-controller="ApplicationController">
 
@@ -22,11 +23,13 @@
                       ng-submit="login(credentials)" ng-controller="LoginController" ng-hide="loggedIn">
                 <div class="form-group">
                     <input type="text" placeholder="Username" class="form-control" 
-                           ng-hide="loggedIn" ng-model="credentials.username" autocomplete="off">
+                           ng-hide="loggedIn" ng-model="credentials.username" autocomplete="off"
+                           ngRrequired="true" >
                 </div>
                 <div class="form-group">
                     <input type="password" placeholder="Password" class="form-control" 
-                           ng-hide="loggedIn" ng-model="credentials.password" autocomplete="off">
+                           ng-hide="loggedIn" ng-model="credentials.password" autocomplete="off"
+                           required="true">
                 </div>
                   <button type="submit" class="btn btn-success">{{btnLogInOut}}</button>
               </form>
@@ -37,7 +40,7 @@
             </div><!--/.navbar-collapse -->
           </div>
         </div>        
-        <div class="container" id="content" >
+        <div class="container-fluid" id="content" >
             <div ng-view></div>
         </div>
         <footer ng-include="'global/footer.html'"></footer>
@@ -47,9 +50,12 @@
         <script src="js/libs/jquery-1.11.1.min.js"></script>
         <script src="js/libs/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
         <script src="js/libs/angularJS/ui-bootstrap-tpls-0.11.0.min.js"></script>
+        <script src="js/libs/ng-grid/ng-grid-2.0.11.min.js"></script>
+        <script src="js/libs/ng-grid/ng-grid-flexible-height.js"></script>
         <script src="js/app.js"></script>
         <script src="js/services/authetication.js"></script>
         <script src="js/services/mediums.js"></script>
+        <script src="js/services/genres.js"></script>
         <script src="js/services/movies.js"></script>
         <script src="js/controllers/applicationcontroller.js"></script>
         <script src="js/controllers/homecontroller.js"></script>
