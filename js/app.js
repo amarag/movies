@@ -16,6 +16,10 @@
                     templateUrl: 'movies/add.html',
                     controller: 'AddController'
                 })
+                .when('/view/:id',{
+                    templateUrl: 'movies/view.html',
+                    controller: 'ViewController'
+                })
 /*                .when('/user/:username', {
                     templateUrl: 'user.html',
                     controller: 'UserController'

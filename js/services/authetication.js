@@ -24,7 +24,7 @@
         };
 
         var isAuthenticated = function(){
-            console.log('authetication.isAuthenticated:' + !!Session.userName);
+//            console.log('authetication.isAuthenticated:' + !!Session.userName);
             return !!Session.userName;
         };
         

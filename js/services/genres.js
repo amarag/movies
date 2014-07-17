@@ -14,7 +14,7 @@ var GenreService = function($http,AuthService){
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         genres = response.data;
-                        console.log('genres.getGenres: '+response.data);
+//                        console.log('genres.getGenres: '+response.data);
                         return genres;
                     });
         };

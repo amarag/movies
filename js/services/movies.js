@@ -14,7 +14,7 @@ var MovieService = function($http,AuthService){
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         movies = response.data;
-                        console.log('movies.getMovies: '+response.data);
+//                        console.log('movies.getMovies: '+response.data);
                         return movies;
                     });
         };

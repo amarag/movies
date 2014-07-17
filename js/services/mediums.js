@@ -14,7 +14,7 @@ var MediumService = function($http,AuthService){
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         mediums = response.data;
-                        console.log('mediums.getMediums: '+response.data);
+//                        console.log('mediums.getMediums: '+response.data);
                         return mediums;
                     });
         };

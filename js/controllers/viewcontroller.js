@@ -7,13 +7,14 @@
 
 var app = angular.module('movies_app');
 
-var AddController = function ($scope) {
-//    console.log('Start AddController');
+var ViewController = function ($scope) {
+    console.log('Start ViewController' + $scope.id);
+    console.log(JSON.stringify(JSON.decycle($scope)));
 
-//    console.log('end AddController');
+    console.log('end ViewController');
 
 }
-app.controller('AddController',AddController);
+app.controller('ViewController',ViewController);
 
 
 }());
