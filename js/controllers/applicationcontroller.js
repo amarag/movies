@@ -33,7 +33,7 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
       $scope.gridOptions = {
           data: 'movies',
           rowTemplate: '<div ng-dblclick="onDblClickRow(row)" ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
-//          plugins: [new ngGridFlexibleHeightPlugin()],
+          plugins: [new ngGridFlexibleHeightPlugin()],
 //    dblClickFn: $scope.myDblClickHandler,
 //    plugins: [ngGridDoubleClick],
 
