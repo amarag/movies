@@ -1,7 +1,8 @@
 (function(){
 
 var MovieService = function($http,AuthService){
-
+    var paramId;
+    
     var getMovies = function(){
         var movies;
         var movieUrl = 'http://localhost/movieserver/movieList.php';
@@ -19,8 +20,35 @@ var MovieService = function($http,AuthService){
                     });
         };
 
+    var getMovie = function(id){
+        var movie;
+        var movieUrl = 'http://localhost/movieserver/movieGet.php';
+        
+        return  $http({
+                    url: movieUrl,
+                    method: "POST",
+                    data: {isAuthenticed: AuthService.isAuthenticated(),
+                        'id': id 
+                        },
+                    //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).then(function(response){
+                        movie = response.data;
+//                        console.log('movies.getMovies: '+response.data);
+                        return movie;
+                    });
+    };
+    
+    var setMovieParamId = function (id) {
+        paramId = id;
+    };
+    var getMovieParamId = function() {
+        return paramId;
+    };
     return {
-            getMovies: getMovies
+            getMovies: getMovies,
+            getMovie: getMovie,
+            setMovieParamId: setMovieParamId,
+            getMovieParamId: getMovieParamId,
         };        
     };
     

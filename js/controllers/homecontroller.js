@@ -89,9 +89,9 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
             }
         }
         if (found) {
-            console.log('location.path = #view');
-            $scope.JOSid = id;
-            $location.path('/view/' + id);
+            MovieService.setMovieParamId(id);
+            console.log('location.path = #view' + $scope.detailsID);
+            $location.path('/view/' + $scope.detailsID);
         }
 //        console.log('**DoubleClick2**' + JSON.stringify(JSON.decycle(row)));        
     }

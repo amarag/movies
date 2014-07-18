@@ -15,6 +15,7 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
   $scope.loggedIn = false;
   $scope.btnLogInOut = 'Sign in';
   $scope.mySelections = [];
+  $scope.detailsID = '0';
   
     // after login successfully handle event
   $scope.$on(AUTH_EVENTS.loginSuccess, function(){
