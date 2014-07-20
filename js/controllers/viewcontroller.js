@@ -11,16 +11,17 @@ var ViewController = function ($scope,MovieService) {
     $scope.detailsID = MovieService.getMovieParamId();
     //console.log('Start ViewController->id: ' + $scope.detailsID);
     //console.log(JSON.stringify(JSON.decycle($scope)));
-    var onMovieListComplete = function(response){
+    var onMovieGetComplete = function(response){
 //        console.log('In onMovieListComplete' + response);
       $scope.movie = response;
+      $scope.error = 'Tekst';
     };
     var onError = function(reason){
         console.log('In onError' + reason);
         $scope.error = 'Could not load movie!';
     };
 
-    MovieService.getMovie($scope.detailsID).then(onMovieListComplete,onerror);
+    MovieService.getMovie($scope.detailsID).then(onMovieGetComplete,onerror);
 
     console.log('end ViewController');
 

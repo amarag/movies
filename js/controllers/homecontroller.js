@@ -90,7 +90,7 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
         }
         if (found) {
             MovieService.setMovieParamId(id);
-            console.log('location.path = #view' + $scope.detailsID);
+            //console.log('location.path = #view' + $scope.detailsID);
             $location.path('/view/' + $scope.detailsID);
         }
 //        console.log('**DoubleClick2**' + JSON.stringify(JSON.decycle(row)));        
