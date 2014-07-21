@@ -16,6 +16,19 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
   $scope.btnLogInOut = 'Sign in';
   $scope.mySelections = [];
   $scope.detailsID = '0';
+  $scope.filterOptions = {
+        filterText: '',
+    };
+      $scope.gridOptions = {
+          data: 'movies',
+          rowTemplate: '<div ng-dblclick="onDblClickRow(row)" ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
+          plugins: [new ngGridFlexibleHeightPlugin()],
+//    dblClickFn: $scope.myDblClickHandler,
+//    plugins: [ngGridDoubleClick],
+
+          filterOptions: $scope.filterOptions.filterText
+          
+      };
   
     // after login successfully handle event
   $scope.$on(AUTH_EVENTS.loginSuccess, function(){
@@ -29,9 +42,10 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
       $scope.btnLogInOut = 'Sign in';
       $scope.loggedIn = false;
   });
+  
   var onMovieListComplete = function(response){
       $scope.movies = response;
-      $scope.gridOptions = {
+/*      $scope.gridOptions = {
           data: 'movies',
           rowTemplate: '<div ng-dblclick="onDblClickRow(row)" ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
           plugins: [new ngGridFlexibleHeightPlugin()],
@@ -41,7 +55,9 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
           filterOptions: $scope.filterOptions.filterText
           
       };
+      */
     }
+    
   var onError = function(reason){
         console.log('In onError' + reason);
         $scope.error = 'Could not load list!';
@@ -54,9 +70,6 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
       isPaginationEnabled: false,
       isGlobalSearchActivated: true
   };
-  //$scope.gridOptions = {
-  //    plugins: [new ngGridFlexibleHeightPlugin()],
-//    };
   $scope.filterOptions = {
         filterText: '',
     };

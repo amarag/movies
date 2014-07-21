@@ -5,7 +5,8 @@ var MovieService = function($http,AuthService){
     
     var getMovies = function(){
         var movies;
-        var movieUrl = 'http://localhost/movieserver/movieList.php';
+        //var movieUrl = 'http://localhost/movieserver/movieList.php';
+        var movieUrl = 'http://localhost/movies7/downloadJSON/json';
         
         return  $http({
                     url: movieUrl,
@@ -15,7 +16,7 @@ var MovieService = function($http,AuthService){
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         movies = response.data;
-//                        console.log('movies.getMovies: '+response.data);
+                        console.log('movies.getMovies: '+response.data);
                         return movies;
                     });
         };

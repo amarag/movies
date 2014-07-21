@@ -15,7 +15,7 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
 //        console.log('In onMovieListComplete' + response);
       $scope.movies = response;
 
-        $scope.gridOptions = {
+/*        $scope.gridOptions = {
           data: 'movies',
           filterOptions: $scope.genresFilter,
           selectedItems: $scope.mySelection,
@@ -25,7 +25,7 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
           //dblClickFn: $scope.myDblClickHandler,
     //plugins: [ngGridDoubleClick]
         };
-    }
+*/    }
     var onGenresListComplete = function(response){
 //        console.log('In onGenresListComplete' + response.data);
         $scope.genres = response;
