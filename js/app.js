@@ -20,15 +20,6 @@
                     templateUrl: 'movies/view.html',
                     controller: 'ViewController'
                 })
-/*                .when('/user/:username', {
-                    templateUrl: 'user.html',
-                    controller: 'UserController'
-                })
-                .when('/repo/:username/:reponame',{
-                    templateUrl: 'repo.html',
-                    controller: 'RepoController'
-                })
-*/                
                 .otherwise({redirectTo: '/'})
     });
     

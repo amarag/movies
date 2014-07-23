@@ -11,11 +11,7 @@
                     Session.create(res.data.id, res.data.username,res.data.password,res.data.email, res.data.role
                                 ,res.data.lastlogin,res.data.active,res.data.attempts,res.data.hashkey);
                                 
-/*                                console.log('AuthService Session => id:' + Session.id +  ' || Username: ' + Session.userName  + ' || role: ' + Session.userRole)
-                                console.log('AuthService Authenticated =>' + isAuthenticated());
-                                console.log('AuthService Authorized =>' + isAuthorized(Session.userRole));
-                                console.log(Session);
-*/                            } else {
+                            } else {
                                 // TODO errorhandling
                                 Session.destroy();
                                 //$scope.error = res.data;

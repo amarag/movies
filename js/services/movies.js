@@ -13,10 +13,9 @@ var MovieService = function($http,AuthService){
                     method: "POST",
                     data: {isAuthenticed: AuthService.isAuthenticated(),
                         },
-                    //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         movies = response.data;
-                        console.log('movies.getMovies: '+response.data);
+                        //console.log('movies.getMovies: '+response.data);
                         return movies;
                     });
         };
@@ -31,7 +30,6 @@ var MovieService = function($http,AuthService){
                     data: {isAuthenticed: AuthService.isAuthenticated(),
                         'id': id 
                         },
-                    //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         movie = response.data;
 //                        console.log('movies.getMovies: '+response.data);

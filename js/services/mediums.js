@@ -11,7 +11,6 @@ var MediumService = function($http,AuthService){
                     method: "POST",
                     data: {isAuthenticed: AuthService.isAuthenticated(),
                         },
-                    //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response){
                         mediums = response.data;
 //                        console.log('mediums.getMediums: '+response.data);
