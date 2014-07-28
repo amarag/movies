@@ -31,17 +31,19 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
     }
 
     // gives initial page lay-out filled    
-    GenreService.getGenres().then(onGenresListComplete,onerror);
-    MediumService.getMediums().then(onMediumsListComplete,onerror);
+//    GenreService.getGenres().then(onGenresListComplete,onerror);
+//    MediumService.getMediums().then(onMediumsListComplete,onerror);
     
     // after login successfully handle event: show new lists
     $scope.$on(AUTH_EVENTS.loginSuccess, function(){
         MovieService.getMovies().then(onMovieListComplete,onerror);
         MediumService.getMediums().then(onMediumsListComplete,onerror);
+        GenreService.getGenres().then(onGenresListComplete,onerror);
     });
     $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
         MovieService.getMovies().then(onMovieListComplete,onerror);
         MediumService.getMediums().then(onMediumsListComplete,onerror);
+        GenreService.getGenres().then(onGenresListComplete,onerror);
     });
 
     $scope.genresClick = function($event, genre) {
@@ -57,12 +59,13 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
     $scope.onDblClickRow = function(row) {
         var found = false;
         var id = null;
+        
         for(var key in row){
             var value = row[key];
             if (value instanceof Object === true) {
                 for(var ikey in value) {
                     var ivalue = value[ikey];
-                    if (ikey === 'movieid') {
+                    if (ikey === 'nid') {
                         console.log('Key: ' + ikey +' value: ' + ivalue);
                         id = ivalue;
                         found = true;
@@ -76,9 +79,9 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
         }
         if (found) {
             MovieService.setMovieParamId(id);
-            $location.path('/view/' + $scope.detailsID);
+            $location.path('/view');
         }
-        console.log('**DoubleClick2**' + JSON.stringify(JSON.decycle(row)));        
+//        console.log('**DoubleClick2**' + JSON.stringify(JSON.decycle(row)));        
     }
 }
 app.controller('HomeController',HomeController);

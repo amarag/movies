@@ -7,7 +7,7 @@
 
 var app = angular.module('movies_app');
 
-var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENTS,Session,MovieService) {
+var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENTS,Session,MediumService, MovieService, GenreService) {
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.isAuthorized = AuthService.isAuthorized;
@@ -52,12 +52,26 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
           
       };
 */    }
+    var onGenresListComplete = function(response){
+//        console.log('In onGenresListComplete' + response.data);
+        $scope.genres = response;
+//        console.log($scope.genres);
+    };
+
+    var onMediumsListComplete = function(response){
+        //console.log('In onMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
+        $scope.mediums = response;
+     //   console.log($scope.mediums);
+    };
     
   var onError = function(reason){
         console.log('In onError' + reason);
         $scope.error = 'Could not load list!';
     }
 
+    // gives initial page lay-out filled    
+  GenreService.getGenres().then(onGenresListComplete,onerror);
+  MediumService.getMediums().then(onMediumsListComplete,onerror);
   MovieService.getMovies().then(onMovieListComplete,onerror);
 
   // grid settings

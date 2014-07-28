@@ -12,6 +12,8 @@ var MovieService = function($http,AuthService){
                     url: movieUrl,
                     method: "POST",
                     data: {isAuthenticed: AuthService.isAuthenticated(),
+                        action: 'getList',
+                        pnid: null,
                         },
                 }).then(function(response){
                         movies = response.data;
@@ -22,17 +24,19 @@ var MovieService = function($http,AuthService){
 
     var getMovie = function(id){
         var movie;
-        var movieUrl = 'http://localhost/movieserver/movieGet.php';
+//        var movieUrl = 'http://localhost/movieserver/movieGet.php';
+        var movieUrl = 'http://localhost/movies7/downloadJSON/json';
         
         return  $http({
                     url: movieUrl,
                     method: "POST",
                     data: {isAuthenticed: AuthService.isAuthenticated(),
-                        'id': id 
+                        action: 'getMovie',
+                        pnid: id,
                         },
                 }).then(function(response){
                         movie = response.data;
-//                        console.log('movies.getMovies: '+response.data);
+                        console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
                         return movie;
                     });
     };

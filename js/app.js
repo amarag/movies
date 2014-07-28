@@ -2,7 +2,7 @@
 
     var app = angular.module('movies_app', ['ngRoute','ui.bootstrap', 'ngGrid']);
     
-    app.config(function ($routeProvider){
+    app.config(function ($routeProvider,$locationProvider){
         $routeProvider
                 .when('/',{
                     templateUrl: 'movies/movies.html',
@@ -16,11 +16,12 @@
                     templateUrl: 'movies/add.html',
                     controller: 'AddController'
                 })
-                .when('/view/:id',{
+                .when('/view',{
                     templateUrl: 'movies/view.html',
                     controller: 'ViewController'
                 })
                 .otherwise({redirectTo: '/'})
+        //$locationProvider.html5Mode(true);
     });
     
     app.constant('AUTH_EVENTS', {
