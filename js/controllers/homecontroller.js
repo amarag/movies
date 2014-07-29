@@ -30,10 +30,6 @@ var HomeController = function ($scope, $http,AuthService, MediumService, MovieSe
         $scope.error = 'Could not load list!';
     }
 
-    // gives initial page lay-out filled    
-//    GenreService.getGenres().then(onGenresListComplete,onerror);
-//    MediumService.getMediums().then(onMediumsListComplete,onerror);
-    
     // after login successfully handle event: show new lists
     $scope.$on(AUTH_EVENTS.loginSuccess, function(){
         MovieService.getMovies().then(onMovieListComplete,onerror);
