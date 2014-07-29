@@ -5,16 +5,16 @@ var MovieService = function($http,AuthService){
     
     var getMovies = function(){
         var movies;
-        //var movieUrl = 'http://localhost/movieserver/movieList.php';
-        var movieUrl = 'http://localhost/movies7/downloadJSON/json';
+        var movieUrl = 'http://localhost/movieserver/movieList.php';
+        //var movieUrl = 'http://localhost/movies7/downloadJSON/json';
         
         return  $http({
                     url: movieUrl,
                     method: "POST",
                     data: {isAuthenticed: AuthService.isAuthenticated(),
                         action: 'getList',
-                        pnid: null,
-                        },
+                        pnid: null
+                        }
                 }).then(function(response){
                         movies = response.data;
                         //console.log('movies.getMovies: '+response.data);
@@ -24,16 +24,16 @@ var MovieService = function($http,AuthService){
 
     var getMovie = function(id){
         var movie;
-//        var movieUrl = 'http://localhost/movieserver/movieGet.php';
-        var movieUrl = 'http://localhost/movies7/downloadJSON/json';
+        var movieUrl = 'http://localhost/movieserver/movieGet.php';
+        //var movieUrl = 'http://localhost/movies7/downloadJSON/json';
         
         return  $http({
                     url: movieUrl,
                     method: "POST",
                     data: {isAuthenticed: AuthService.isAuthenticated(),
                         action: 'getMovie',
-                        pnid: id,
-                        },
+                        pnid: id
+                        }
                 }).then(function(response){
                         movie = response.data;
                         //console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
@@ -51,7 +51,7 @@ var MovieService = function($http,AuthService){
             getMovies: getMovies,
             getMovie: getMovie,
             setMovieParamId: setMovieParamId,
-            getMovieParamId: getMovieParamId,
+            getMovieParamId: getMovieParamId
         };        
     };
     
