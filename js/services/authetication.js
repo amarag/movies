@@ -20,7 +20,7 @@
         };
 
         var isAuthenticated = function(){
-//            console.log('authetication.isAuthenticated:' + !!Session.userName);
+//            console.log('authentication.isAuthenticated:' + !!Session.userName);
             return !!Session.userName;
         };
         
