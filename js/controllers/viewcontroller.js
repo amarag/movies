@@ -7,8 +7,9 @@ var ViewController = function ($scope,MovieService) {
     //console.log(JSON.stringify(JSON.decycle($scope)));
 
     var onMovieGetComplete = function(response){
-      console.log('In onMovieGetComplete' + response['title']);
+      console.log('In onMovieGetComplete: ' + response[0].title);
       $scope.movie = response;
+      console.log('onMovieGetComplete:  ' + $scope.movie);
     };
 
     var onError = function(reason){

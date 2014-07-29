@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-controller="ViewController">
-<form>
-{{error}}   
-{{movie.title}}
+    <form>
+        <div ng-repeat="mv in movie track by $index">
+{{mv.title}}
     <div class="row">
     <div class="col-md-1"><label for="txtTitle">Title:</label></div>
     <div class="col-md-11"><input type="text" size="50" ng-model="movie.title"/></div>
@@ -20,7 +20,8 @@
     </div>
     <div class="row">
     <div class="col-md-1"><label for="txtDescription" >Descritpion:</label></div>
-    <div class="col-md-11"><textarea cols="50" rows="4" ng-model="movie.description"/></div>
+    <div class="col-md-11"><textarea cols="50" rows="4" ng-model="movie.description"></textarea></div>
     </div>
+</div>
 </form>
 </div>

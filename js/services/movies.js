@@ -36,7 +36,7 @@ var MovieService = function($http,AuthService){
                         },
                 }).then(function(response){
                         movie = response.data;
-                        console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
+                        //console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
                         return movie;
                     });
     };
