@@ -15,7 +15,6 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
   $scope.error = '';
   $scope.loggedIn = false;
   $scope.btnLogInOut = 'Sign in';
-  $scope.mySelections = [];
   $scope.detailsID = '0';
   $scope.mediums;  // contains the selected options from checkboxes
   $scope.mediumfilter;
@@ -37,36 +36,6 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
       $scope.btnLogInOut = 'Sign in';
       $scope.loggedIn = false;
   });
-  
-    var onMovieListComplete = function(response){
-        $scope.movies = response;
-       // $scope.data = response;
-    }
-    var onGenresListComplete = function(response){
-//        console.log('In onGenresListComplete' + response.data);
-        $scope.genres = response;
-//        console.log($scope.genres);
-    };
-
-    var onMediumsListComplete = function(response){
-        //console.log('In onMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
-        $scope.mediums = response;
-     //   console.log($scope.mediums);
-    };
-    
-  var onError = function(reason){
-        console.log('In onError' + reason);
-        $scope.error = 'Could not load list!';
-    }
-
-    // gives initial page lay-out filled    
-  GenreService.getGenres().then(onGenresListComplete,onerror);
-  MediumService.getMediums().then(onMediumsListComplete,onerror);
-  MovieService.getMovies().then(onMovieListComplete,onerror);
-
-  $scope.filterOptions = {
-        filterText: '',
-    };
   
 }   
 

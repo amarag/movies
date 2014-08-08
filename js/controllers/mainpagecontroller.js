@@ -34,13 +34,15 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
     // check if movies exists If so roundtrip is not needed.
     if ($scope.movies === undefined) {
         //console.log('mainpagecontroller.scope.movies undefined');
+        GenreService.getGenres().then(onGenresListComplete,onerror);
+        MediumService.getMediums().then(onMediumsListComplete,onerror);
         MovieService.getMovies().then(onMoviesListComplete,onerror);
     }
     
     // after login successfully handle event: show new lists
     $scope.$on(AUTH_EVENTS.loginSuccess, function(){
         MovieService.getMovies().then(onMoviesListComplete,onerror);
-        //MediumService.getMediums().then(onMediumsListComplete,onerror);
+        MediumService.getMediums().then(onMediumsListComplete,onerror);
         GenreService.getGenres().then(onGenresListComplete,onerror);
     });
     $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
@@ -49,23 +51,13 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
         GenreService.getGenres().then(onGenresListComplete,onerror);
     });
 
-/*    $scope.genresClick = function($event, genre) {
-        var checkbox = $event.target;
-        if (checkbox.checked == true) {
-            $scope.filterOptions.filterText = genre;
-        } else {
-            $scope.filterOptions.filterText = '';
-        }
-        //console.log('homecontroller->genresClick:' + checkbox.checked + ' || ' +$scope.filterOptions.filterText);
-    }
-*/    
     $scope.selectMedium = function(medium) {
         //console.log('mainpagecontroller.selectMedium: '+ JSON.stringify(JSON.decycle($scope.mediums)));
         console.log('mainpagecontroller.selectMedium: '+ medium.md + ' checked: ' + medium.checked);
         if (medium.checked) {
             $scope.mediumfilter = medium.md;
         } else {
-            $scope.mediumfilter = null;
+            $scope.mediumfilter = '';
         }
     }
 
@@ -74,7 +66,7 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
         if (genre.checked) {
             $scope.genrefilter = genre.gn;
         } else {
-            $scope.genrefilter = null;
+            $scope.genrefilter = '';
         }
     }
 
