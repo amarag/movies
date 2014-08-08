@@ -3,7 +3,7 @@
 var app = angular.module('movies_app');
 
 var MainpageController = function ($scope, $http,AuthService, MediumService, MovieService
-                                    , GenreService,AUTH_EVENTS,$location) {
+                                    , GenreService,AUTH_EVENTS,$location, $filter) {
 //    console.log('Start MainpageController');
     $scope.btnLogInOut = 'Sign in';
     $scope.sortorder = 'name';
@@ -62,10 +62,20 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
     $scope.selectMedium = function(medium) {
         //console.log('mainpagecontroller.selectMedium: '+ JSON.stringify(JSON.decycle($scope.mediums)));
         console.log('mainpagecontroller.selectMedium: '+ medium.md + ' checked: ' + medium.checked);
+        if (medium.checked) {
+            $scope.mediumfilter = medium.md;
+        } else {
+            $scope.mediumfilter = null;
+        }
     }
 
     $scope.selectGenre = function(genre) {
         console.log('mainpagecontroller.selectGenre: '+ genre.gn + ' checked: ' + genre.checked);
+        if (genre.checked) {
+            $scope.genrefilter = genre.gn;
+        } else {
+            $scope.genrefilter = null;
+        }
     }
 
     $scope.setSelected = function(nid) {

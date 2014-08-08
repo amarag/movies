@@ -7,13 +7,15 @@
     </div>
     <div class="col-md-9 movieList">
         <table id='mlist' class='table-hover'>
-<!--            <thead>
-                    <th>Title</th>
-                    <th>Genres</th>
-                    <th>Mediums</th>
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Genres</td>
+                    <td>Mediums</td>
+                </tr>
             </thead>
--->            <tbody>
-                <tr ng-repeat="movie in movies" 
+<!--           <tbody> -->
+                <tr ng-repeat="movie in movies | filter :{types:mediumfilter, genres:genrefilter}" 
                     ng-class-even="'even'" 
                     ng-class-odd="'odd'" 
                     id="{{movie.nid}}}"
@@ -23,7 +25,7 @@
                     <td>{{movie.genres}}</td>
                     <td>{{movie.types}}</td>
                 </tr>
-            </tbody>
+<!--            </tbody>  -->
         </table> 
     </div> 
    

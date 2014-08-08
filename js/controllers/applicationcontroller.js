@@ -17,7 +17,9 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
   $scope.btnLogInOut = 'Sign in';
   $scope.mySelections = [];
   $scope.detailsID = '0';
-  $scope.selectors = {};  // contains the selected options from checkboxes
+  $scope.mediums;  // contains the selected options from checkboxes
+  $scope.mediumfilter;
+  $scope.genrefilter;
 
   $scope.filterOptions = {
         filterText: '',
