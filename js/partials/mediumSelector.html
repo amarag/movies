@@ -2,9 +2,9 @@ Medium:<br>
 <div id='mediumCheckboxList' ng_repeat="medium in mediums">
     <input type="checkbox" 
            name="mediumsCheck" 
-           value="{{medium}}" 
-           ng-model="selectors.mediums"
+           value="{{medium.md}}" 
+           ng-model="medium.checked"
            ng-change="selectMedium(medium)"
            />
-        {{medium}}
+        {{medium.md}}
 </div>

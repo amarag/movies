@@ -49,7 +49,7 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
         GenreService.getGenres().then(onGenresListComplete,onerror);
     });
 
-    $scope.genresClick = function($event, genre) {
+/*    $scope.genresClick = function($event, genre) {
         var checkbox = $event.target;
         if (checkbox.checked == true) {
             $scope.filterOptions.filterText = genre;
@@ -58,18 +58,16 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
         }
         //console.log('homecontroller->genresClick:' + checkbox.checked + ' || ' +$scope.filterOptions.filterText);
     }
-    
+*/    
     $scope.selectMedium = function(medium) {
-//$scope.selectors
-        console.log('mainpagecontroller.selectMedium: '+ JSON.stringify(JSON.decycle($scope.selectors)));
-        console.log('mainpagecontroller.selectMedium: '+ $scope.selectors.mediums);
-        var len=$scope.selectors.length;
-        for (var i=0;i<len;i++) {
-            if ($scope.selectors[i] == medium){
-                alert(i + ' - ' + medium);
-            }
-        }
+        //console.log('mainpagecontroller.selectMedium: '+ JSON.stringify(JSON.decycle($scope.mediums)));
+        console.log('mainpagecontroller.selectMedium: '+ medium.md + ' checked: ' + medium.checked);
     }
+
+    $scope.selectGenre = function(genre) {
+        console.log('mainpagecontroller.selectGenre: '+ genre.gn + ' checked: ' + genre.checked);
+    }
+
     $scope.setSelected = function(nid) {
         MovieService.setMovieParamId(nid);
         $location.path('/view');
