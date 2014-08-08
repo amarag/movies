@@ -56,3 +56,16 @@ footer {
     text-align: center;
     color: #888888;
 }
+
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+}
+table tbody { height:350px; overflow-y:scroll; display:block; }
+table thead { display:block; }

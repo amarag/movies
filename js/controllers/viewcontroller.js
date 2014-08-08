@@ -4,12 +4,14 @@ var app = angular.module('movies_app');
 
 var ViewController = function ($scope,MovieService) {
     $scope.detailsID = MovieService.getMovieParamId();
-    //console.log(JSON.stringify(JSON.decycle($scope)));
-
+    console.log('ViewController id: ' + $scope.detailsID);
+    
     var onMovieGetComplete = function(response){
-      console.log('In onMovieGetComplete: ' + response[0].title);
       $scope.movie = response;
-      console.log('onMovieGetComplete:  ' + $scope.movie);
+//      console.log('ViewController.onMovieGetComplete:  ' + $scope.movie.title);
+//      console.log('ViewController.onMovieGetComplete:  ' + response.title);
+    console.log('viewcontroller: '+ JSON.stringify(JSON.decycle($scope.movie)));
+      console.log('ViewController.onMovieGetComplete:  ' + $scope.movie.genres);
     };
 
     var onError = function(reason){

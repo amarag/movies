@@ -1,23 +1,23 @@
 (function(){
 
-    var app = angular.module('movies_app', ['ngRoute','ui.bootstrap', 'ngGrid']);
+    var app = angular.module('movies_app', ['ngRoute','ui.bootstrap']);
     
     app.config(function ($routeProvider,$locationProvider){
         $routeProvider
                 .when('/',{
-                    templateUrl: 'movies/movies.html',
-                    controller: 'HomeController'
+                    templateUrl: 'js/partials/movies.html',
+                    controller: 'MainpageController'
                 })
                 .when('/about',{
-                    templateUrl: 'global/about.html',
+                    templateUrl: 'js/partials/about.html',
                     controller: 'AboutController'
                 })
                 .when('/add',{
-                    templateUrl: 'movies/add.html',
+                    templateUrl: 'js/partials/add.html',
                     controller: 'AddController'
                 })
                 .when('/view',{
-                    templateUrl: 'movies/view.html',
+                    templateUrl: 'js/partials/view.html',
                     controller: 'ViewController'
                 })
                 .otherwise({redirectTo: '/'})
@@ -66,5 +66,12 @@
         };
         return this;
       })
-      
+      app.filter('true_false', function() {
+          return function(text,length,end){
+              if (text) {
+                  return 'Yes';
+              }
+              return 'No';
+          }
+      });
 }());

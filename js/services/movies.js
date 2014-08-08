@@ -35,16 +35,19 @@ var MovieService = function($http,AuthService){
                         pnid: id,
                         },
                 }).then(function(response){
+//                        console.log('movies.getMovies: ' + response.data.title);
                         movie = response.data;
-                        //console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
+//                        console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
                         return movie;
                     });
     };
     
     var setMovieParamId = function (id) {
+        //console.log('movie.js=>set id: ' + id);
         paramId = id;
     };
     var getMovieParamId = function() {
+        //console.log('movie.js=>get id: ' + paramId);
         return paramId;
     };
     return {

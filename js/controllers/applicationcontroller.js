@@ -7,7 +7,8 @@
 
 var app = angular.module('movies_app');
 
-var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENTS,Session,MediumService, MovieService, GenreService) {
+var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENTS,Session,MediumService
+                            , MovieService, GenreService) {
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.isAuthorized = AuthService.isAuthorized;
@@ -16,15 +17,11 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
   $scope.btnLogInOut = 'Sign in';
   $scope.mySelections = [];
   $scope.detailsID = '0';
+  $scope.selectors = {};  // contains the selected options from checkboxes
+
   $scope.filterOptions = {
         filterText: '',
   };
-  $scope.gridOptions = {
-          data: 'movies',
-          rowTemplate: '<div ng-dblclick="onDblClickRow(row)" ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
-          plugins: [new ngGridFlexibleHeightPlugin()],
-          filterOptions: $scope.filterOptions.filterText
-      };
   
     // after login successfully handle event
   $scope.$on(AUTH_EVENTS.loginSuccess, function(){
@@ -39,19 +36,10 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
       $scope.loggedIn = false;
   });
   
-  var onMovieListComplete = function(response){
-      $scope.movies = response;
-/*      $scope.gridOptions = {
-          data: 'movies',
-          rowTemplate: '<div ng-dblclick="onDblClickRow(row)" ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
-          plugins: [new ngGridFlexibleHeightPlugin()],
-//    dblClickFn: $scope.myDblClickHandler,
-//    plugins: [ngGridDoubleClick],
-
-          filterOptions: $scope.filterOptions.filterText
-          
-      };
-*/    }
+    var onMovieListComplete = function(response){
+        $scope.movies = response;
+       // $scope.data = response;
+    }
     var onGenresListComplete = function(response){
 //        console.log('In onGenresListComplete' + response.data);
         $scope.genres = response;
@@ -74,28 +62,12 @@ var ApplicationController = function ($scope, USER_ROLES, AuthService,AUTH_EVENT
   MediumService.getMediums().then(onMediumsListComplete,onerror);
   MovieService.getMovies().then(onMovieListComplete,onerror);
 
-  // grid settings
-  $scope.gridConfig = {
-      isPaginationEnabled: false,
-      isGlobalSearchActivated: true
-  };
   $scope.filterOptions = {
         filterText: '',
     };
   
-  $scope.gridHeader = [
-      {label:'movieid', map: 'nummer' }  ,
-      {label:'title', map: 'Title' }  ,
-      {label:'year', map: 'Year' }  ,
-      {label:'type', map: 'media' }  ,
-      {label:'genres', map: 'Genres' }  ,
-  ];
-
-  
 }   
 
-
 app.controller('ApplicationController',ApplicationController);
-
 
 }());

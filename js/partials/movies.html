@@ -1,0 +1,31 @@
+<div id="wrapper" class="row row-offcanvas row-offcanvaas-right ">
+    <div  class="col-md-2">
+    <aside id="leftsidebar">
+        <div id="genrePart" ng-include="'js/partials/genresSelector.html'"></div> 
+        <div id="mediumPart" ng-include="'js/partials/mediumSelector.html'"></div>
+    </aside>
+    </div>
+    <div class="col-md-9 movieList">
+        <table id='mlist' class='table-hover'>
+<!--            <thead>
+                    <th>Title</th>
+                    <th>Genres</th>
+                    <th>Mediums</th>
+            </thead>
+-->            <tbody>
+                <tr ng-repeat="movie in movies" 
+                    ng-class-even="'even'" 
+                    ng-class-odd="'odd'" 
+                    id="{{movie.nid}}}"
+                    ng-click="setSelected(movie.nid)";
+                    >
+                    <td>{{movie.title}}</td>
+                    <td>{{movie.genres}}</td>
+                    <td>{{movie.types}}</td>
+                </tr>
+            </tbody>
+        </table> 
+    </div> 
+   
+    <div id="rightsidebar" class="col-md-1">right</div>
+</div>
