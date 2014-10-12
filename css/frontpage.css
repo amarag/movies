@@ -69,3 +69,13 @@ td, th {
 }
 table tbody { height:350px; overflow-y:scroll; display:block; }
 table thead { display:block; }
+
+/* redefine bootstrap css */
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #ccc;
+}
+
+[ng-cloak] {
+    display: none !important;
+}

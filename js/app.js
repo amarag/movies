@@ -41,37 +41,15 @@
         guest: 'guest'
       });
       
-      app.service('Session', function () {
-        this.create = function (sessionId, userName,password, userEmail, userRole, userLastlogin, userActive, userAttempts,userHashKey) {
-          this.id = sessionId;
-          this.userName = userName;
-          this.password = password;
-          this.email = userEmail;
-          this.userRole = userRole;
-          this.lastLogin = userLastlogin;
-          this.active = userActive;
-          this.attempts = userAttempts;
-          this.hashkey = userHashKey;
-        };
-        this.destroy = function () {
-          this.id = null;
-          this.userName = null;
-          this.password = null;
-          this.userRole = null;
-          this.email = null;
-          this.lastLogin = null;
-          this.active = null;
-          this.attempts = null;
-          this.hashkey = null;
-        };
-        return this;
-      })
       app.filter('true_false', function() {
-          return function(text,length,end){
-              if (text) {
+          return function(text){
+              if (text == 1) {
                   return 'Yes';
-              }
-              return 'No';
+              } else if (text == 0){
+                return 'No';
+            } else {
+                return '';
+            }
           }
       });
 }());

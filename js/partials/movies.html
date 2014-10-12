@@ -5,19 +5,15 @@
         <div id="mediumPart" ng-include="'js/partials/mediumSelector.html'"></div>
     </aside>
     </div>
-    <div class="col-md-9 movieList">
-        <table id='mlist' class='table-hover'>
-<!--            <thead>  -->
+    <div class="col-md-8 movieList">
+        <table id='mlist' class='table-hover table-striped'>
            <tbody> 
                 <tr>
                     <th>Title</th>
                     <th>Genres</th>
                     <th>Mediums</th>
                 </tr>
-<!--            </thead>   -->
                 <tr ng-repeat="movie in movies | filter :{types:mediumfilter, genres:genrefilter}" 
-                    ng-class-even="'even'" 
-                    ng-class-odd="'odd'" 
                     id="{{movie.nid}}}"
                     ng-click="setSelected(movie.nid)";
                     >
@@ -29,5 +25,10 @@
         </table> 
     </div> 
    
-    <div id="rightsidebar" class="col-md-1">right</div>
+    <div id="rightsidebar" class="col-md-2">
+        <div mvs-Statistics></div>
+    </div>
 </div>
+<!--                    ng-class-even="'even'" 
+                    ng-class-odd="'odd'" 
+-->

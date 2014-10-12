@@ -4,26 +4,35 @@ var app = angular.module('movies_app');
 
 var MainpageController = function ($scope, $http,AuthService, MediumService, MovieService
                                     , GenreService,AUTH_EVENTS,$location, $filter) {
-//    console.log('Start MainpageController');
+    //console.log('Start MainpageController');
     $scope.btnLogInOut = 'Sign in';
     $scope.sortorder = 'name';
 
     var onMoviesListComplete = function(response){
-//      console.log('In onMovieListComplete' + response);
-      $scope.movies = response;
-//      $( ".movieList" ).append('<ul><li ng-repeat="movie in movies">{{movie.title}}</li></ul>' );
+        //console.log('In onMovieListComplete' + response);
+        $scope.movies = response;
     };
+    
+    var onCountComplete = function(response){
+//      console.log('In onCountComplete' + JSON.stringify(JSON.decycle(response)));
+      $scope.moviescount = response;
+      $scope.getTotals = function(){
+          var total = 0;
+          for (var i=0; i < $scope.moviescount.length;i++){
+              total += parseInt($scope.moviescount[i].number,0);
+          }
+          return total;
+      }
+      };
     
     var onGenresListComplete = function(response){
 //        console.log('In onGenresListComplete' + response.data);
         $scope.genres = response;
-//        console.log($scope.genres);
     };
 
     var onMediumsListComplete = function(response){
         //console.log('In onMediumsListComplete' + response + ' || '+AuthService.isAuthenticated());
         $scope.mediums = response;
-     //   console.log($scope.mediums);
     };
     
     var onError = function(reason){
@@ -37,23 +46,27 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
         GenreService.getGenres().then(onGenresListComplete,onerror);
         MediumService.getMediums().then(onMediumsListComplete,onerror);
         MovieService.getMovies().then(onMoviesListComplete,onerror);
+        MovieService.getCount().then(onCountComplete,onerror);
     }
     
     // after login successfully handle event: show new lists
     $scope.$on(AUTH_EVENTS.loginSuccess, function(){
+        console.log('Event loginSucces');
+        
         MovieService.getMovies().then(onMoviesListComplete,onerror);
+        MovieService.getCount().then(onCountComplete,onerror);
         MediumService.getMediums().then(onMediumsListComplete,onerror);
         GenreService.getGenres().then(onGenresListComplete,onerror);
     });
     $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
         MovieService.getMovies().then(onMoviesListComplete,onerror);
-        //MediumService.getMediums().then(onMediumsListComplete,onerror);
+        MovieService.getCount().then(onCountComplete,onerror);
+        MediumService.getMediums().then(onMediumsListComplete,onerror);
         GenreService.getGenres().then(onGenresListComplete,onerror);
     });
 
     $scope.selectMedium = function(medium) {
-        //console.log('mainpagecontroller.selectMedium: '+ JSON.stringify(JSON.decycle($scope.mediums)));
-        console.log('mainpagecontroller.selectMedium: '+ medium.md + ' checked: ' + medium.checked);
+        //console.log('mainpagecontroller.selectMedium: '+ medium.md + ' checked: ' + medium.checked);
         if (medium.checked) {
             $scope.mediumfilter = medium.md;
         } else {
@@ -62,7 +75,7 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
     }
 
     $scope.selectGenre = function(genre) {
-        console.log('mainpagecontroller.selectGenre: '+ genre.gn + ' checked: ' + genre.checked);
+        //console.log('mainpagecontroller.selectGenre: '+ genre.gn + ' checked: ' + genre.checked);
         if (genre.checked) {
             $scope.genrefilter = genre.gn;
         } else {
@@ -75,6 +88,7 @@ var MainpageController = function ($scope, $http,AuthService, MediumService, Mov
         $location.path('/view');
     };    
 }
+
 app.controller('MainpageController',MainpageController);
 
 }());

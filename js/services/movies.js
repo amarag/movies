@@ -11,7 +11,8 @@ var MovieService = function($http,AuthService){
         return  $http({
                     url: movieUrl,
                     method: "POST",
-                    data: {isAuthenticed: AuthService.isAuthenticated(),
+                    data: {
+//                        isAuthenticed: true, //AuthService.isAuthenticated(),
                         action: 'getList',
                         pnid: null,
                         },
@@ -30,7 +31,7 @@ var MovieService = function($http,AuthService){
         return  $http({
                     url: movieUrl,
                     method: "POST",
-                    data: {isAuthenticed: AuthService.isAuthenticated(),
+                    data: {isAuthenticed: true, // AuthService.isAuthenticated(),
                         action: 'getMovie',
                         pnid: id,
                         },
@@ -39,6 +40,26 @@ var MovieService = function($http,AuthService){
                         movie = response.data;
 //                        console.log('movies.getMovies: '+ JSON.stringify(JSON.decycle(response.data)));
                         return movie;
+                    });
+    };
+
+    var getCount = function(){
+        var movies;
+        //var movieUrl = 'http://localhost/movieserver/movieList.php';
+        var movieUrl = 'http://localhost/movies7/downloadJSON/json';
+        
+        return  $http({
+                url: movieUrl,
+                method: "POST",
+                data: {
+                    //isAuthenticed: true, //AuthService.isAuthenticated(),
+                    action: 'getCount',
+                    pnid: null,
+                },
+            }).then(function(response){
+                        moviescount = response.data;
+//                        console.log('movies.getCount: '+ JSON.stringify(JSON.decycle(response.data)));
+                        return moviescount;
                     });
     };
     
@@ -53,6 +74,7 @@ var MovieService = function($http,AuthService){
     return {
             getMovies: getMovies,
             getMovie: getMovie,
+            getCount: getCount,
             setMovieParamId: setMovieParamId,
             getMovieParamId: getMovieParamId,
         };        

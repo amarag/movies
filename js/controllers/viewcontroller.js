@@ -9,9 +9,7 @@ var ViewController = function ($scope,MovieService) {
     var onMovieGetComplete = function(response){
       $scope.movie = response;
 //      console.log('ViewController.onMovieGetComplete:  ' + $scope.movie.title);
-//      console.log('ViewController.onMovieGetComplete:  ' + response.title);
-    console.log('viewcontroller: '+ JSON.stringify(JSON.decycle($scope.movie)));
-      console.log('ViewController.onMovieGetComplete:  ' + $scope.movie.genres);
+//        console.log('viewcontroller: '+ JSON.stringify(JSON.decycle($scope.movie)));
     };
 
     var onError = function(reason){
@@ -20,11 +18,7 @@ var ViewController = function ($scope,MovieService) {
     };
 
     MovieService.getMovie($scope.detailsID).then(onMovieGetComplete,onerror);
-
-    //console.log('end ViewController');
-
 }
 app.controller('ViewController',ViewController);
-
 
 }());
